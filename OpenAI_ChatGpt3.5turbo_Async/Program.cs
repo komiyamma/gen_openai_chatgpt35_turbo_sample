@@ -7,9 +7,16 @@ using OpenAI.GPT3.ObjectModels.RequestModels;
 Console.WriteLine("Hello, World!");
 
 string? key = Environment.GetEnvironmentVariable("OPENAI_KEY");
+string? question = args[0];
 if (String.IsNullOrEmpty(key))
 {
     Console.WriteLine("キーが環境変数に無い");
+    return;
+}
+
+if (String.IsNullOrEmpty(question))
+{
+    Console.WriteLine("質問内容が無い");
     return;
 }
 
@@ -23,9 +30,9 @@ var completionResult = openAiService.ChatCompletion.CreateCompletionAsStream(new
     Messages = new List<ChatMessage>
     {
         ChatMessage.FromSystem("You are a helpful assistant."),
-        // ChatMessage.FromUser("pythonの効率的な学び方はなんですか？"),
-        // ChatMessage.FromAssistance("The Los Angeles Dodgers won the World Series in 2020."),
-        ChatMessage.FromUser("C#の効率的な学び方はなんですか？")
+        ChatMessage.FromUser("リンゴの英語はなんですか？"),
+        ChatMessage.FromAssistance("Apple."),
+        ChatMessage.FromUser(question)
     },
     Model = Models.ChatGpt3_5Turbo,
     MaxTokens = 1000 //optional
