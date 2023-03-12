@@ -6,39 +6,52 @@ using OpenAI.GPT3.ObjectModels.RequestModels;
 using OpenAI.GPT3.ObjectModels.ResponseModels;
 using static OpenAI.GPT3.ObjectModels.Models;
 
+
+class OpenAIKeyNotFoundException : KeyNotFoundException
+{
+    public OpenAIKeyNotFoundException(string msg) : base(msg) { }
+}
+
+class OpenAIServiceNotFoundException : Exception
+{
+    public OpenAIServiceNotFoundException(string msg) : base(msg) { }
+}
+
 class Program
 {
+    const string OpenAIEnvironmentVariableName = "OPENAI_KEY";
+    const string ErrorMessageNoOpenAIKey = "キーが環境変数にありません。:\n";
+
     // OpenAIのキーの取得
     static string? GetOpenAIKey()
     {
-        string? key = Environment.GetEnvironmentVariable("OPENAI_KEY");
+        string? key = Environment.GetEnvironmentVariable(OpenAIEnvironmentVariableName);
         if (String.IsNullOrEmpty(key))
         {
-            Console.WriteLine("キーが環境変数に無い");
+            throw new OpenAIKeyNotFoundException("OPENAI_KEY");
         }
         return key;
     }
 
+
+    const string QuestionPromptMessages = "-- 質問をどうぞ --\n";
+    const string NoQuestionMessage = "質問内容が無い\n";
+
+    const string ChatEndMessage = "チャットを終了";
     // 質問内容の取得
     static string? GetQuestion()
     {
         string? question = "";
 
-        Console.Write("-- 質問をどうぞ --\n");
+        Console.Write(QuestionPromptMessages);
         question = Console.ReadLine();
-
-        if (String.IsNullOrEmpty(question))
-        {
-            Console.WriteLine("質問内容が無い\n");
-        }
-        Console.Write("\n");
 
         if (String.IsNullOrEmpty(question))
         {
             return null;
         }
 
-        if (question.ToUpper() == "チャットを終了")
+        if (question.ToUpper() == ChatEndMessage)
         {
             return null;
         }
@@ -46,13 +59,13 @@ class Program
         return question;
     }
 
+    const string ErrorMessageNoOpenAIService = "OpenAIのサービスに接続できません。:\n";
     // OpenAIサービスのインスタンス。一応保持
     static OpenAIService? openAiService = null;
 
     static OpenAIService? ConnectOpenAIService(string key)
     {
-        try
-        {
+        try { 
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
                 ApiKey = key
@@ -60,11 +73,10 @@ class Program
 
             return openAiService;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine("OpenAIのサービスに接続できません。:\n" + ex);
+            throw;
         }
-        return null;
     }
 
     // OpenAIサービスのインスタンスのクリア。多分disconnectみたいなメソッドはない。
@@ -76,23 +88,24 @@ class Program
     // OpenAIサービスのインスタンスのクリア。多分disconnectみたいなメソッドはない。
     static List<ChatMessage> messageList = new();
 
+    const string ChatGPTStartSystemMessage = "You are a helpful assistant.";
     // チャットのエンジンやオプション。過去のチャット内容なども渡す。
     static IAsyncEnumerable<ChatCompletionCreateResponse> ReBuildPastChatContents()
     {
         var key = GetOpenAIKey();
         if (key == null)
         {
-            throw new Exception("NullOpenAIKeyException");
+            throw new OpenAIKeyNotFoundException("OPENAI_KEY");
         }
 
         openAiService = ConnectOpenAIService(key);
         if (openAiService == null)
         {
-            throw new Exception("NullOpenAIServiceException)");
+            throw new OpenAIServiceNotFoundException("OpenAIService");
         }
 
         var list = new List<ChatMessage>();
-        list.Add(ChatMessage.FromSystem("You are a helpful assistant."));
+        list.Add(ChatMessage.FromSystem(ChatGPTStartSystemMessage));
 
         foreach (var mes in messageList)
         {
@@ -110,6 +123,8 @@ class Program
         return completionResult;
     }
 
+    const string AssistanceAnswerCompleteMsg = "\n\n-- 完了 --\n\n";
+    const string ErrorMsgUnknown = "Unknown Error:\n";
     // チャットの反復
     static async Task RepeatChat()
     {
@@ -120,6 +135,7 @@ class Program
             {
                 break;
             }
+            Console.WriteLine("");
             messageList.Add(ChatMessage.FromUser(question));
             var completionResult = ReBuildPastChatContents();
 
@@ -136,15 +152,16 @@ class Program
                 {
                     if (completion.Error == null)
                     {
-                        throw new Exception("Unknown Error");
+                        throw new Exception(ErrorMsgUnknown);
                     }
 
                     Console.WriteLine($"{completion.Error.Code}: {completion.Error.Message}");
+                    Console.Error.WriteLine($"{completion.Error.Code}: {completion.Error.Message}");
                 }
             }
 
             messageList.Add(ChatMessage.FromAssistance(answer_sum));
-            Console.WriteLine("\n\n-- 完了 --\n\n");
+            Console.WriteLine(AssistanceAnswerCompleteMsg);
         }
 
     }
@@ -152,7 +169,26 @@ class Program
     // メイン
     public static async Task Main(String[] args)
     {
-        await RepeatChat();
+        try
+        {
+            GetOpenAIKey(); // かまし
+            await RepeatChat();
+        }
+        catch(OpenAIKeyNotFoundException ex)
+        {
+            Console.WriteLine(ErrorMessageNoOpenAIKey + ex);
+            Console.Error.WriteLine(ErrorMessageNoOpenAIKey + ex);
+        }
+        catch (OpenAIServiceNotFoundException ex)
+        {
+            Console.WriteLine(ErrorMessageNoOpenAIService + ex);
+            Console.Error.WriteLine(ErrorMessageNoOpenAIService + ex);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ErrorMsgUnknown + ex);
+            Console.Error.WriteLine(ErrorMsgUnknown + ex);
+        }
     }
 }
 
