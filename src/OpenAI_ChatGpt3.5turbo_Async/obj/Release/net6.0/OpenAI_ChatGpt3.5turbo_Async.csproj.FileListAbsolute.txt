@@ -2,7 +2,6 @@ G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.deps.json
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.runtimeconfig.json
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.dll
-G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.pdb
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\OpenAI.GPT3.dll
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\bin\Release\net6.0\Microsoft.Extensions.Configuration.Binder.dll
@@ -22,6 +21,5 @@ G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\obj\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.csproj.CopyComplete
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\obj\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.dll
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\obj\Release\net6.0\refint\OpenAI_ChatGpt3.5turbo_Async.dll
-G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\obj\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.pdb
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\obj\Release\net6.0\OpenAI_ChatGpt3.5turbo_Async.genruntimeconfig.cache
 G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\obj\Release\net6.0\ref\OpenAI_ChatGpt3.5turbo_Async.dll

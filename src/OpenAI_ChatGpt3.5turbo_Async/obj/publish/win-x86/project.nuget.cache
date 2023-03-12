@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "q+Yuwp41Jemk84iKGAprK+S7jwP9PCwmhTunAHbsXLWNAh5Iig/jC6tQkprl+lL3V9RoUhDhz1ZQpoq2iGQTLQ==",
+  "dgSpecHash": "avP7dU19X9rHnjyHwlxpWGyfvdFJmS8J45wScPWXAAGQZtVWIvEfgbgTPgUMadk3TZVseYaex8NxdN9VT/rN+Q==",
   "success": true,
   "projectFilePath": "G:\\repogitory\\gen_openai_chatgpt35_turbo_sample\\src\\OpenAI_ChatGpt3.5turbo_Async\\OpenAI_ChatGpt3.5turbo_Async.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,8 @@
     "C:\\Users\\master\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.14\\microsoft.netcore.app.runtime.win-x86.6.0.14.nupkg.sha512",
     "C:\\Users\\master\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.14\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.14.nupkg.sha512",
-    "C:\\Users\\master\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.14\\microsoft.aspnetcore.app.runtime.win-x86.6.0.14.nupkg.sha512"
+    "C:\\Users\\master\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.14\\microsoft.aspnetcore.app.runtime.win-x86.6.0.14.nupkg.sha512",
+    "C:\\Users\\master\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.14\\microsoft.netcore.app.crossgen2.win-x64.6.0.14.nupkg.sha512"
   ],
   "logs": []
 }
