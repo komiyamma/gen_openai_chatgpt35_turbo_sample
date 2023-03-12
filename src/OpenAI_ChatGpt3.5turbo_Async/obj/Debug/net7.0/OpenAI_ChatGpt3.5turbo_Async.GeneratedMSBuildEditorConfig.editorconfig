@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OpenAI_ChatGpt3.5turbo_Async
-build_property.ProjectDir = G:\repogitory\gen_openai_chatgpt35_turbo_sample\OpenAI_ChatGpt3.5turbo_Async\
+build_property.ProjectDir = G:\repogitory\gen_openai_chatgpt35_turbo_sample\src\OpenAI_ChatGpt3.5turbo_Async\
